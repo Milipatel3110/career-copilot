@@ -82,12 +82,15 @@ export default function Sidebar({ mobileOpen, onClose }: SidebarProps) {
       </nav>
 
       {/* Footer */}
-      <div className="px-4 py-4 border-t border-white/5">
+      <div className="px-4 py-4 border-t border-white/5 space-y-2">
         <div className="card-glass rounded-xl p-3">
           <p className="text-xs text-white/40 text-center">
-            Powered by Gemini AI
+            Powered by Groq &amp; Llama 3.3
           </p>
         </div>
+        <p className="text-[10px] text-white/20 text-center">
+          &copy; {new Date().getFullYear()} Mili Patel. All rights reserved.
+        </p>
       </div>
     </div>
   );
