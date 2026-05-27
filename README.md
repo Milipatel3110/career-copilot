@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CareerCopilot AI
+
+> An AI-powered career intelligence platform for everyone — not just CS students.
+
+**Live Demo → [career-copilot-zeta.vercel.app](https://career-copilot-zeta.vercel.app)**
+
+---
+
+## Overview
+
+CareerCopilot AI is a full-stack platform that helps job seekers at every stage of their career journey. Upload your resume, browse live job listings, analyze your fit for any role, practice interviews, build a career roadmap, and generate tailored cover letters — all powered by AI.
+
+Built with Next.js 16, Groq's Llama 3.3 70B, and the Adzuna Jobs API. Every AI response streams in real time.
+
+---
+
+## Features
+
+| Feature | Description |
+|---|---|
+| **Resume X-Ray** | Upload your PDF resume — get a full AI analysis with strengths, ATS keywords, and rewrite suggestions |
+| **Smart Job Board** | Live job listings from Adzuna across 50+ countries with search, filters (Remote, Senior, Entry Level, Full-time, Part-time), and pagination |
+| **Job Match Engine** | Paste any job description → get a match score, skills gap analysis, and tactical advice on how to position yourself |
+| **Mock Interviewer** | AI conducts a full interview for any role, asks follow-up questions, and gives feedback on every answer |
+| **Career Roadmap Builder** | Enter your current role and target role → get a step-by-step learning and experience roadmap |
+| **Cover Letter Forge** | Generate a professional cover letter in Professional, Enthusiastic, or Concise tone — with or without your resume |
+
+---
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router) + TypeScript
+- **AI:** Groq API — Llama 3.3 70B Versatile (real-time streaming)
+- **Jobs API:** Adzuna (50+ countries, all industries)
+- **PDF Parsing:** unpdf (server-side)
+- **UI:** Tailwind CSS v4 + Framer Motion
+- **Deployment:** Vercel
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- [Groq API key](https://console.groq.com) — free tier available
+- [Adzuna API credentials](https://developer.adzuna.com) — free tier available
+
+### Installation
+
+```bash
+git clone https://github.com/Milipatel3110/career-copilot.git
+cd career-copilot
+npm install
+```
+
+### Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+GROQ_API_KEY=your_groq_api_key
+ADZUNA_APP_ID=your_adzuna_app_id
+ADZUNA_APP_KEY=your_adzuna_app_key
+```
+
+### Run Locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+src/
+├── app/
+│   ├── (app)/              # App pages
+│   │   ├── dashboard/
+│   │   ├── resume/         # Resume X-Ray
+│   │   ├── jobs/           # Smart Job Board
+│   │   ├── match/          # Job Match Engine
+│   │   ├── interview/      # Mock Interviewer
+│   │   ├── roadmap/        # Career Roadmap
+│   │   └── cover-letter/   # Cover Letter Forge
+│   ├── api/                # API route handlers
+│   └── page.tsx            # Landing page
+├── components/
+│   └── Sidebar.tsx
+└── lib/
+    ├── gemini.ts           # Groq streaming client
+    └── adzuna.ts           # Adzuna API wrapper
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deploy instantly to Vercel:
 
-## Deploy on Vercel
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Milipatel3110/career-copilot)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Set the three environment variables in the Vercel dashboard during setup.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## License
+
+MIT — free to fork and build on.
+
+---
+
+*Built by [Mili Patel](https://github.com/Milipatel3110)*
