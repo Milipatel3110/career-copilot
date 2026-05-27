@@ -1,6 +1,5 @@
 import { NextRequest } from "next/server";
 import { streamToResponse } from "@/lib/gemini";
-import { PDFParse } from "pdf-parse";
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,6 +20,7 @@ export async function POST(request: NextRequest) {
     let resumeText = "";
     if (file && file.type === "application/pdf") {
       const buffer = Buffer.from(await file.arrayBuffer());
+      const { PDFParse } = await import("pdf-parse");
       const parser = new PDFParse({ data: buffer });
       const result = await parser.getText();
       resumeText = result.text;

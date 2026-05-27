@@ -74,6 +74,8 @@ export default function MatchPage() {
       });
 
       if (!response.ok) {
+        const ct = response.headers.get("content-type") || "";
+        if (!ct.includes("application/json")) throw new Error(`Server error (${response.status})`);
         const err = await response.json();
         throw new Error(err.error || "Match analysis failed");
       }

@@ -53,8 +53,12 @@ export default function ResumePage() {
       });
 
       if (!response.ok) {
-        const err = await response.json();
-        throw new Error(err.error || "Analysis failed");
+        const contentType = response.headers.get("content-type") || "";
+        if (contentType.includes("application/json")) {
+          const err = await response.json();
+          throw new Error(err.error || "Analysis failed");
+        }
+        throw new Error(`Server error (${response.status}). Please try again.`);
       }
 
       // Extract resume text from response header for Job Match feature
