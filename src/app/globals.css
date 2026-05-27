@@ -1,26 +1,84 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+@plugin "@tailwindcss/typography";
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #08080c;
+  color: #f0f0ff;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #4e9bff, #7877c6, #ff5bc1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #4e9bff, #7877c6, #ff5bc1);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #08080c;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.prose {
+  color: rgba(200, 200, 220, 0.9);
+}
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: #f0f0ff;
+}
+.prose strong {
+  color: #f0f0ff;
+}
+.prose code {
+  color: #7877c6;
+  background: rgba(120, 119, 198, 0.1);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+.prose a {
+  color: #4e9bff;
+}
+.prose ul li::marker {
+  color: #7877c6;
+}
+.prose ol li::marker {
+  color: #7877c6;
+}
+.prose blockquote {
+  border-left-color: #7877c6;
+  color: rgba(200, 200, 220, 0.7);
+}
+.prose hr {
+  border-color: rgba(255, 255, 255, 0.08);
 }
