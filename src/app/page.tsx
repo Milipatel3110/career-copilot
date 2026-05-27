@@ -153,7 +153,7 @@ export default function LandingPage() {
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-white/60 mb-8"
           >
             <Star className="w-3 h-3 text-[#7877c6]" />
-            Powered by Google Gemini 1.5 Flash
+            Powered by Groq &amp; Llama 3.3
           </motion.div>
 
           <motion.h1
@@ -374,7 +374,7 @@ export default function LandingPage() {
       <footer className="border-t border-white/5 py-8 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-white/30 text-sm">
-            CareerCopilot AI — Powered by Google Gemini &amp; Adzuna Jobs API
+            CareerCopilot AI — Powered by Groq &amp; Adzuna Jobs API &nbsp;|&nbsp; &copy; 2026 Mili Patel
           </p>
         </div>
       </footer>
