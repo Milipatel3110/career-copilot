@@ -25,6 +25,7 @@ export async function searchJobs(params: {
   salary_min?: number;
   full_time?: boolean;
   part_time?: boolean;
+  sort_by?: string;
 }): Promise<{ results: AdzunaJob[]; count: number }> {
   const country = params.country || "us";
   const page = params.page || 1;
@@ -38,6 +39,7 @@ export async function searchJobs(params: {
   );
   url.searchParams.set("what", params.what);
   url.searchParams.set("content-type", "application/json");
+  url.searchParams.set("sort_by", params.sort_by || "date");
   if (params.where) url.searchParams.set("where", params.where);
   if (params.salary_min)
     url.searchParams.set("salary_min", String(params.salary_min));

@@ -172,8 +172,13 @@ export default function JobsPage() {
       setLoading(true);
       setError("");
       try {
+        let what = query || "software engineer";
+        if (activeFilter === "Remote") what = `${what} remote`;
+        if (activeFilter === "Entry Level") what = `${what} entry level`;
+        if (activeFilter === "Senior") what = `${what} senior`;
+
         const params = new URLSearchParams({
-          what: query || "software engineer",
+          what,
           country,
           page: String(p),
         });
@@ -199,7 +204,7 @@ export default function JobsPage() {
   useEffect(() => {
     fetchJobs(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [activeFilter, country]);
 
   const totalPages = Math.ceil(Math.min(totalCount, 200) / 20);
 
@@ -283,9 +288,7 @@ export default function JobsPage() {
         {FILTERS.map((f) => (
           <button
             key={f}
-            onClick={() => {
-              setActiveFilter(f);
-            }}
+            onClick={() => setActiveFilter(f)}
             className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
               activeFilter === f
                 ? "bg-[#7877c6] text-white"
