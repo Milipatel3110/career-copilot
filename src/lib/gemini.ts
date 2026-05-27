@@ -1,21 +1,23 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import Groq from "groq-sdk";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-export function getModel() {
-  return genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-}
+const MODEL = "llama-3.3-70b-versatile";
 
 export async function streamToResponse(prompt: string): Promise<ReadableStream> {
-  const model = getModel();
-  const result = await model.generateContentStream(prompt);
+  const stream = await groq.chat.completions.create({
+    model: MODEL,
+    messages: [{ role: "user", content: prompt }],
+    stream: true,
+    max_tokens: 4096,
+  });
 
   return new ReadableStream({
     async start(controller) {
       const encoder = new TextEncoder();
       try {
-        for await (const chunk of result.stream) {
-          const text = chunk.text();
+        for await (const chunk of stream) {
+          const text = chunk.choices[0]?.delta?.content ?? "";
           if (text) controller.enqueue(encoder.encode(text));
         }
       } finally {
@@ -26,7 +28,10 @@ export async function streamToResponse(prompt: string): Promise<ReadableStream> 
 }
 
 export async function generateContent(prompt: string): Promise<string> {
-  const model = getModel();
-  const result = await model.generateContent(prompt);
-  return result.response.text();
+  const response = await groq.chat.completions.create({
+    model: MODEL,
+    messages: [{ role: "user", content: prompt }],
+    max_tokens: 4096,
+  });
+  return response.choices[0]?.message?.content ?? "";
 }
